@@ -1,0 +1,154 @@
+* {
+	box-sizing: border-box;
+}
+
+.results img {
+	width: 200px;
+	height: auto;
+	float: left;
+}
+ul {
+	list-style-type: none;
+}
+
+button:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.previous {
+    background-color: #f1f1f1;
+    color: black;
+}
+
+#next {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#round {
+    border-radius: 50%;
+}
+
+#lightbox {
+    position:fixed; 
+    top:0; 
+    left:0; 
+    width:100%; 
+    height:100%; 
+    background:url(overlay.png) repeat; 
+    text-align:center;
+}
+
+#lightbox p {
+    text-align:right; 
+    color:#fff; 
+    margin-right:20px; 
+    font-size:12px; 
+}
+
+#lightbox img {
+    box-shadow:0 0 25px #111;
+    -webkit-box-shadow:0 0 25px #111;
+    -moz-box-shadow:0 0 25px #111;
+    max-width:940px;
+}
+
+body {
+    margin:0; 
+    padding:0; 
+    background:#efefef;
+    text-align:center; /* used to center div in IE */
+}
+
+#next {
+	
+    text-decoration: none;
+    display: inline-block;
+    
+
+}
+#previous {
+	
+	text-decoration: none;
+    display: inline-block;
+    
+}
+
+.flickr li {
+	border: 1px black;
+	background:#fff; 
+	padding:25px;
+	width: auto;
+	float: left;  
+	}
+.flickr ul {
+	background:#fff; 
+	float: left;  
+}
+.flickr {
+    width:85%; 
+    margin:0 auto; 
+    background:#fff; 
+    text-align:left; 
+    border:1px solid #ccc;
+    border-top:none; 
+    border-radius:0 0 5px 5px;
+    -moz-border-radius:0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px; 
+    box-shadow:0 0 5px #ccc;
+    -moz-box-shadow:0 0 5px #ccc;
+    -webkit-box-shadow:0 0 5px #ccc;
+    
+}
+.wiki li {
+	border: 1px black;
+	background:#fff; 
+	padding:25px;
+	width: auto;
+	float: left;  
+	}
+.flickr ul {
+	background:#fff; 
+	float: left;
+}
+.wiki {
+    width:85%; 
+    margin:0 auto; 
+    background:#fff; 
+    text-align:left; 
+    border:1px solid #ccc;
+    border-top:none; 
+    border-radius:0 0 5px 5px;
+    -moz-border-radius:0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px; 
+    box-shadow:0 0 5px #ccc;
+    -moz-box-shadow:0 0 5px #ccc;
+    -webkit-box-shadow:0 0 5px #ccc;
+}
+
+.pixabay li {
+	border: 1px black;
+	background:#fff; 
+	padding:25px;
+	width: auto;
+	float: left;  
+	}
+.pixabay ul {
+	background:#fff; 
+	float: left; 
+	}
+.pixabay {
+   	width:85%; 
+    margin:0 auto; 
+    background:#fff; 
+    text-align:left; 
+    border:1px solid #ccc;
+    border-top:none; 
+    border-radius:0 0 5px 5px;
+    -moz-border-radius:0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px; 
+    box-shadow:0 0 5px #ccc;
+    -moz-box-shadow:0 0 5px #ccc;
+    -webkit-box-shadow:0 0 5px #ccc;
+}
