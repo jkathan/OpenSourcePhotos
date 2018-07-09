@@ -50,10 +50,9 @@ function submitAction() {
         $(event.currentTarget).val('');
         //googleGetRequest(searchTerm, licenseType)
         //console.log(searchTerm)
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        //if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  // some code..
-}
-       });
+      });
       $(".submit").click(function() {
         $('html, body').animate({
         scrollTop: $(".main").offset().top
@@ -64,7 +63,7 @@ function submitAction() {
         scrollTop: $("header").offset().top
     }, 2000);
         });
-      lightboxFun ()
+     
 }
 
 function flickrNext() {
