@@ -5,21 +5,53 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <meta charset="utf-8"/>
   <link href="index.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/0f63d8ca7c.css" media="all">
    <script src="index.js"></script>
 </head>
 <body>
-  <h1>Find the right photo for you</h1>
+  <header>
+  <div class="Logo">
+    <img src="https://i.imgur.com/p7s386K.png" class="imageLogo">
+    <h1>Find a Royalty-Free <br>Photo Now</h1>
+  </div>
    <form id="searchTerm">
-      <label for="query">Entry:</label>
-       <input id="query" type="text" name="search"><br>
+      <label for="query"></label>
+       <input id="query" type="text" name="search" class="searchLocation"  autofocus="autofocus" placeholder="Search here...">
       <select name="license" class = "license">
-        <!--<option value="">None</option>-->
-        <option value="No Domain">No known copyright restrictions</option>
-        <option value="4">Attribution License</option>
-        <option value="9">Public Domain Dedication</option>
+        <option value="" disabled selected>Select your license</option>
+        <option value="No known copyright restrictions">Public Domain</option>
+        <option value="Attribution-NoDerivs License">Attribution License</option>
+        <option value="Attribution-ShareAlike License">Share-alike</option>
+        <option value="Attribution-NonCommercial License">Non-commercial</option>
     </select>
-    <input type="submit" value="Submit">
+  <br>
+    <input type="submit" value="Submit" class="submit">
 </form>
+<div class="LicenseAttribution">
+  <div class="PublicDomain cc">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Cc-public_domain_mark_white.svg" class="cclogo">
+    <h2 class="cctitle">Public Domain</h2>
+    <p>A work free of any known copyright restrictions</p>
+  </div>
+  <div class="Attribution cc">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Cc-by_new.svg" class="cclogo">
+    <h2 class="cctitle">Attribution</h2>
+    <p>Licensees may copy, distribute, display and perform the work and make derivative works and remixes based on it only if they give the author or licensor the credits in the manner specified by these.</p>
+  </div>
+  <div class="Share-alike cc">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Cc-sa.svg" class="cclogo">
+    <h2 class="cctitle">Share-alike</h2>
+    <p>Licensees may distribute derivative works only under a license identical ("not more restrictive") to the license that governs the original work.</p>
+  </div>
+  <div class="Non-commercial cc">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Cc-nc.svg" class="cclogo">
+    <h2 class="cctitle">Non-Commercial</h2>
+    <p>Licensees may copy, distribute, display, and perform the work and make derivative works and remixes based on it only for non-commercial purposes.</p>
+  </div>
+</div>
+</header>
+<main class="main">
 <div class="results"> 
   <div class="flickr" aria-live="assertive">
     <button id="previousFlickr">&#8249;</button>
@@ -29,7 +61,7 @@
   </div>
   <br>
   <div class="wiki" aria-live="assertive">
-    <button id="previous">&#8249;</button>
+    <button id="previousWiki">&#8249;</button>
     <ul id="wikiResults">
     </ul>
     <button id="nextWiki">&#8250;</button> 
@@ -43,6 +75,8 @@
   </div>
   <br>
 </div>
+<button class="toTop">Back to top  <i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</main>
 </body>
 
 </html>

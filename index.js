@@ -1,3 +1,8 @@
+//things that need to be done
+//build logic to make wikipedia reset value if new value is applied
+//build logic to make it so that pixabay doesn't automatically send default if submit is hit
+//build lightbox
+
 const flickrLicense = [
 {uiDesc: "Attribution-NonCommercial-ShareAlike License", apiVal: 1}, 
 {uiDesc: "Attribution-NonCommercial License", apiVal: 2}, 
@@ -8,14 +13,6 @@ const flickrLicense = [
 {uiDesc: "Public Domain Dedication (CC0)", apiVal: 8}, 
 ]
 
-const googleLicense = [
-{uiDesc: "Attribution-NonCommercial-ShareAlike License", apiVal: 'cc_sharealike'}, 
-{uiDesc: "Attribution-NonCommercial License", apiVal: 'cc_noncommercial'}, 
-{uiDesc: "Attribution-NonCommercial-NoDerivs License", apiVal: 'cc_attribute'}, 
-{uiDesc: "Attribution-ShareAlike License", apiVal: 'cc_sharealike'}, 
-{uiDesc: "Attribution-NoDerivs License", apiVal: 'cc_nonderived'}, 
-{uiDesc: "Public Domain Dedication (CC0)", apiVal: 'cc_publicdomain'},
-]
 
 var wikiImages = null
 
@@ -39,6 +36,7 @@ function mapLicenseType(uiLicenseType, apiName) {
     return '';
 }
 
+
 function submitAction() {
     $('#searchTerm').submit(function (event) {
         event.preventDefault();
@@ -52,7 +50,21 @@ function submitAction() {
         $(event.currentTarget).val('');
         //googleGetRequest(searchTerm, licenseType)
         //console.log(searchTerm)
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ // some code..
+}
+       });
+      $(".submit").click(function() {
+        $('html, body').animate({
+        scrollTop: $(".main").offset().top
+    }, 2000);
+});
+      $(".toTop").click(function() {
+        $('html, body').animate({
+        scrollTop: $("header").offset().top
+    }, 2000);
         });
+      lightboxFun ()
 }
 
 function flickrNext() {
@@ -97,7 +109,7 @@ function flickrGetRequest(searchTerm, licenseType, apiFlickrPage) {
         tagmode: 'all',
         format: 'json',
         nojsoncallback: 1,
-        per_page: 6,
+        per_page: 4,
         page: apiFlickrPage,
         //Work through owner name
         license: mapLicenseType(licenseType, 'flickr'),
@@ -116,9 +128,9 @@ function buildThumbnailUrl(photo) {
       const thumbnail = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server +
       '/' + photo.id + '_' + photo.secret + '_q.jpg';
       console.log(thumbnail);
-      return `<li class="flickrImages">
-     <a href="${thumbnail}" class = "lightbox_trigger" tabindex><img src ="${thumbnail}" alt = "${photo.title}"></a>
-    </li>    
+      return `<li id="flickrImages">
+     <a href="${thumbnail}" id= "open-lightbox" tabindex><img src ="${thumbnail}" alt = "${photo.title}"></a>
+    </li>
     `;
 }
 //Pixabay API CAll
@@ -127,7 +139,7 @@ function pixabayGetRequest(searchTerm, apiPixabayPage) {
     const params = {
         key: '9415919-232c4dd0b6ca28882e4ff7fba',
         q: searchTerm,
-        per_page: 6,
+        per_page: 4,
         page: apiPixabayPage,
         //Work through owner name
         //license: mapLicenseType(licenseType, 'flickr'),
@@ -153,7 +165,7 @@ function buildPixabayThumbnailUrl(photo) {
 
 function wikiPageMaker () {
     var results = '';
-    for(var i = (wikiPageNumber * 6 - 6) ; i < (wikiPageNumber * 6 - 1); i++) {
+    for(var i = (wikiPageNumber * 4 - 4) ; i < (wikiPageNumber * 4); i++) {
     //{show wikiImages[i]
     results += buildWikiThumbnailUrl (wikiImages[i]);
   }
@@ -163,6 +175,14 @@ function wikiPageMaker () {
 function wikiNextButton (){
   document.getElementById('nextWiki').addEventListener("click", function(e) {
   wikiPageNumber++;
+  const results = wikiPageMaker();
+  $('#wikiResults').html(results)
+});
+}
+
+function wikiPreviousButton (){
+  document.getElementById('previousWiki').addEventListener("click", function(e) {
+  wikiPageNumber--;
   const results = wikiPageMaker();
   $('#wikiResults').html(results)
 });
@@ -209,37 +229,31 @@ function buildWikiThumbnailUrl(photo) {
     `;
 }
 
-function lightBox() {
-$('.lightbox_trigger').click(function(e) {
-  e.preventDefault();
-  var image_href = $(this).attr("href");
-  if ($('#lightbox').length > 0) { 
-    $('#content').html('<img src="' + image_href + '" />');
-    $('#lightbox').show();
-  }
-  //if statement depending on what type of photo was pressed. Question around how to pull data from api within a function that doesnt provide thos parameters. Do i have to write a lightbox for each?
-  else {
-      var lightbox = 
-      '<div id="lightbox">' +
-        '<p>Click to close</p>' +
-        '<div id="content">' + 
-          '<img src="' + image_href +'" />' +
-        '</div>' +  
-      '</div>';
-      $('body').append(lightbox);
-    }
+/*(function($) {
+  
+  // Open Lightbox
+  $('.open-lightbox').on('click', function(e) {
+    e.preventDefault();
+    var image = $(this).attr('href');
+    $('html').addClass('no-scroll');
+    $('#pixabayResults').append('<div class="lightbox-opened"><img src="' + image + '"></div>');
   });
-  $('#lightbox').on('click', function() { 
-    $('#lightbox').hide();
+  
+  // Close Lightbox
+    $('#pixabayResults').on('click', '.lightbox-opened', function() {
+    $('html').removeClass('no-scroll');
+    $('.lightbox-opened').remove();
   });
-}
+  
+})(jQuery);*/
 
 $(document).ready(function () {
         submitAction();
-        lightBox();
         flickrPrevious();
         flickrNext();
         pixabayNext();
         pixabayPrevious ();
         wikiNextButton ();
+        wikiPreviousButton ();
+        
 });

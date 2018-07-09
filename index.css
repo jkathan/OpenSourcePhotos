@@ -1,7 +1,215 @@
 * {
 	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+header {
+	background: linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) ), url(https://i.imgur.com/at2livj.jpg);
+	background-size: cover;
+	background-position: 15% 0%;
+	background-attachment: scroll;
+	height: 100vh; /*will have to be changed for responsive*/
+	padding: 20px 0px;
+}
+.imageLogo {
+	width: 15%;
+	height: auto;
+	margin-top: 80px;
+}
+.Logo h1{
+	display: inline-block;
+	vertical-align: top;
+	color: white;
+	margin-top: 130px;
+	font-weight: bold;
+	font-size: 35px;
+}
+main {
+	margin-top: 25px;
+}
+input {
+	width: 33%;
+	margin-top: 50px;
+	}
+
+.searchLocation {
+	border: none;
+	background: rgba(255, 255, 255, 0.50);
+	padding: 5px 10px; 
+	line-height: 18px;
+	font-size: 12px;
+	border-radius: 5px
+}
+.submit {
+	background: rgba(255, 255, 255);
+	transition: color 0.25s linear;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px
+}
+.submit:hover {
+	background: #20B2AA;
+}
+.license {
+	display: inline-block;
+	padding: 5px 10px;
+	width: 20%;
+	
 }
 
+.LicenseAttribution {
+	display: flex;
+	padding-top: 20px;
+	margin-top: 20px;
+	text-align: center;
+	background-color: rgba(220,220,220, .4)
+	}
+
+.LicenseAttribution img {
+	width: 25%;
+}
+
+.LicenseAttribution p {
+	font-size: 10px;
+}
+.LicenseAttribution h2 {
+	font-size: 13px;
+}
+.cc {
+	width: 17%;
+	margin: 0 auto;
+	text-align: center;
+	
+}
+
+
+.PublicDomain {
+	float: left;
+	border-right: 2px black;
+	border-left: 2px black;
+}
+
+.Attribution {
+	float: left;
+	border-right: 2px black;
+	border-left: 2px black;
+}
+.Share-alike {
+	float: left;
+	border-right: 2px black;
+	border-left: 2px black;
+}
+
+.Non-commercial {
+	float: left;
+	border-right: 2px black;
+	border-left: 2px black;
+}
+.flickr {
+	width: 80%;
+	display: flex;
+	background:#fff; 
+	margin: auto;
+	margin-top: 100px
+}
+
+.wiki {
+	width: 80%;
+	display: flex;
+	background:#fff; 
+	margin: auto;
+}
+
+.pixabay {
+	width: 80%;
+	display: flex;
+	background:#fff; 
+	margin: auto;
+}
+
+#previousFlickr {
+	float: left;
+	border: none;
+	color: black;
+	font-size: 150px;
+
+}
+
+#flickrResults {
+	width: 95%;
+	text-align: center;
+}
+#flickrResults li {
+	display: inline-block;
+}
+#flickrResults img{
+
+}
+#nextFlickr {
+	float: right;
+	border: none;
+	color: black;
+	font-size: 150px;
+}
+
+#previouswiki {
+	float: left;
+	border: none;
+	color: black;
+	font-size: 150px;
+}
+
+#wikiResults {
+	width: 95%;
+	text-align: center;
+}
+
+#wikiResults li {
+	display: inline-block;
+	
+}
+#wikiResults img{
+
+}
+
+#previousWiki {
+	float: left;
+	border: none;
+	color: black;
+	font-size: 150px;
+}
+
+#nextWiki {
+	float: right;
+	border: none;
+	color: black;
+	font-size: 150px;
+}
+
+#previousPixabay {
+	float: left;
+	border: none;
+	color: black;
+	font-size: 150px;
+}
+
+#pixabayResults {
+	width: 95%;
+	text-align: center;
+}
+
+#pixabayResults li {
+	display: inline-block;
+
+}
+#pixabayResults img{
+
+}
+#nextPixabay {
+	float: right;
+	border: none;
+	color: black;
+	font-size: 150px;
+}
 .results img {
 	width: 200px;
 	height: auto;
@@ -16,43 +224,6 @@ button:hover {
     color: black;
 }
 
-.previous {
-    background-color: #f1f1f1;
-    color: black;
-}
-
-#next {
-    background-color: #4CAF50;
-    color: white;
-}
-
-#round {
-    border-radius: 50%;
-}
-
-#lightbox {
-    position:fixed; 
-    top:0; 
-    left:0; 
-    width:100%; 
-    height:100%; 
-    background:url(overlay.png) repeat; 
-    text-align:center;
-}
-
-#lightbox p {
-    text-align:right; 
-    color:#fff; 
-    margin-right:20px; 
-    font-size:12px; 
-}
-
-#lightbox img {
-    box-shadow:0 0 25px #111;
-    -webkit-box-shadow:0 0 25px #111;
-    -moz-box-shadow:0 0 25px #111;
-    max-width:940px;
-}
 
 body {
     margin:0; 
@@ -61,94 +232,83 @@ body {
     text-align:center; /* used to center div in IE */
 }
 
-#next {
-	
-    text-decoration: none;
-    display: inline-block;
-    
-
-}
-#previous {
-	
-	text-decoration: none;
-    display: inline-block;
-    
-}
-
 .flickr li {
 	border: 1px black;
-	background:#fff; 
-	padding:25px;
+	
 	width: auto;
-	float: left;  
+	
 	}
 .flickr ul {
-	background:#fff; 
-	float: left;  
+	  
 }
-.flickr {
-    width:85%; 
-    margin:0 auto; 
-    background:#fff; 
-    text-align:left; 
-    border:1px solid #ccc;
-    border-top:none; 
-    border-radius:0 0 5px 5px;
-    -moz-border-radius:0 0 5px 5px;
-    -webkit-border-radius: 0 0 5px 5px; 
-    box-shadow:0 0 5px #ccc;
-    -moz-box-shadow:0 0 5px #ccc;
-    -webkit-box-shadow:0 0 5px #ccc;
-    
-}
+
 .wiki li {
 	border: 1px black;
 	background:#fff; 
 	padding:25px;
 	width: auto;
-	float: left;  
+	 
 	}
 .flickr ul {
 	background:#fff; 
-	float: left;
-}
-.wiki {
-    width:85%; 
-    margin:0 auto; 
-    background:#fff; 
-    text-align:left; 
-    border:1px solid #ccc;
-    border-top:none; 
-    border-radius:0 0 5px 5px;
-    -moz-border-radius:0 0 5px 5px;
-    -webkit-border-radius: 0 0 5px 5px; 
-    box-shadow:0 0 5px #ccc;
-    -moz-box-shadow:0 0 5px #ccc;
-    -webkit-box-shadow:0 0 5px #ccc;
+	
 }
 
-.pixabay li {
-	border: 1px black;
-	background:#fff; 
-	padding:25px;
-	width: auto;
-	float: left;  
-	}
-.pixabay ul {
-	background:#fff; 
-	float: left; 
-	}
-.pixabay {
-   	width:85%; 
-    margin:0 auto; 
-    background:#fff; 
-    text-align:left; 
-    border:1px solid #ccc;
-    border-top:none; 
-    border-radius:0 0 5px 5px;
-    -moz-border-radius:0 0 5px 5px;
-    -webkit-border-radius: 0 0 5px 5px; 
-    box-shadow:0 0 5px #ccc;
-    -moz-box-shadow:0 0 5px #ccc;
-    -webkit-box-shadow:0 0 5px #ccc;
+#flickrImages img {
+	padding: 7px;
+
+}
+
+.pixabayImages img {
+	padding: 7px;
+}
+
+.wikiImages img {
+	padding: 7px;
+}
+
+.toTop {
+	border: none;
+	text-align: center;
+	padding: 20px;
+}
+/*Testing */
+#lightbox {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+#lightbox.open {
+  display: block;
+}
+
+#lightbox_content {
+  position: absolute;
+  width: 500px;
+  height: 400px;
+  background: #ffffff;
+  border-radius: 3px;
+  left: 50%;
+  top: 50%;
+  margin-left: -250px;
+  margin-top: -200px;
+  text-align: center;
+}
+
+#close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  height: 20px;
+  width: 20px;
+  border-radius: 15px;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
 }
