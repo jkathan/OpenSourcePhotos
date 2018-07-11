@@ -10,14 +10,13 @@
    <script src="index.js"></script>
 </head>
 <body>
-  <header>
+  <header role="banner">
   <div class="Logo">
-    <img src="https://i.imgur.com/p7s386K.png" class="imageLogo">
+    <img src="https://i.imgur.com/p7s386K.png" class="imageLogo" alt="camera icon">
     <h1>Find a Royalty-Free <br>Photo Now</h1>
   </div>
    <form id="searchTerm">
-      <label for="query"></label>
-       <input id="query" type="text" name="search" class="searchLocation"  autofocus="autofocus" placeholder="Search here...">
+      <input id="query" type="text" name="search" class="searchLocation"  autofocus="autofocus" placeholder="Search here..." role="search" aria-label="Search">
       <select name="license" class = "license">
         <option value="" disabled selected>Select your license</option>
         <option value="No known copyright restrictions">Public Domain</option>
@@ -26,57 +25,76 @@
         <option value="Attribution-NonCommercial License">Non-commercial</option>
     </select>
   <br>
-    <input type="submit" value="Submit" class="submit">
+    <input type="submit" value="Submit" class="submit" aria-label="Search">
 </form>
-<div class="LicenseAttribution">
-  <div class="PublicDomain cc">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Cc-public_domain_mark_white.svg" class="cclogo">
+<div class="licenseTotal">
+<ul class="LicenseAttribution">
+  <li class="PublicDomain cc">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Cc-public_domain_mark_white.svg" class="cclogo" alt="public domain logo">
     <h2 class="cctitle">Public Domain</h2>
     <p>A work free of any known copyright restrictions</p>
-  </div>
-  <div class="Attribution cc">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Cc-by_new.svg" class="cclogo">
+  </li>
+  <li class="Attribution cc">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Cc-by_new.svg" class="cclogo" alt="attribution logo">
     <h2 class="cctitle">Attribution</h2>
     <p>Licensees may copy, distribute, display and perform the work and make derivative works and remixes based on it only if they give the author or licensor the credits in the manner specified by these.</p>
-  </div>
-  <div class="Share-alike cc">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Cc-sa.svg" class="cclogo">
+  </li>
+  <li class="Share-alike cc">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Cc-sa.svg" class="cclogo" alt="share alike logo">
     <h2 class="cctitle">Share-alike</h2>
     <p>Licensees may distribute derivative works only under a license identical ("not more restrictive") to the license that governs the original work.</p>
-  </div>
-  <div class="Non-commercial cc">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Cc-nc.svg" class="cclogo">
+  </li>
+  <li class="Non-commercial cc">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Cc-nc.svg" class="cclogo" alt="non-commercial logo">
     <h2 class="cctitle">Non-Commercial</h2>
     <p>Licensees may copy, distribute, display, and perform the work and make derivative works and remixes based on it only for non-commercial purposes.</p>
-  </div>
+  </li>
+</ul>
 </div>
 </header>
-<main class="main">
-<div class="results"> 
-  <div class="flickr" aria-live="assertive">
-    <button id="previousFlickr">&#8249;</button>
-    <ul id="flickrResults">
-    </ul>
-    <button id="nextFlickr">&#8250;</button> 
+<main class="main" role="main">
+<div class="results" aria-live="assertive"> 
+   <h1>-- Pixabay --</h1>
+   <p class="saveImage">Click on image and "Save image as..."</p>
+  <div class="mainContent">
+    <div class="pixabay">
+      <button id="previousPixabay">&#8249;</button>
+      <ul id="pixabayResults">
+      </ul>
+      <button id="nextPixabay">&#8250;</button> 
+    </div>
+    <a href="https://pixabay.com/"><p class="siteNavigate">Naviage to website</p></a>
+    <br>
   </div>
-  <br>
-  <div class="wiki" aria-live="assertive">
-    <button id="previousWiki">&#8249;</button>
-    <ul id="wikiResults">
-    </ul>
-    <button id="nextWiki">&#8250;</button> 
+  <h1>-- Wiki Commons --</h1>
+ <p class="saveImage">Click image and "Save image as..."</p>
+  <div class="mainContent">
+    <div class="wiki" aria-live="assertive">
+      <button id="previousWiki">&#8249;</button>
+      <ul id="wikiResults">
+      </ul>
+      <button id="nextWiki">&#8250;</button> 
+    </div>
+     <a href="https://commons.wikimedia.org/wiki/Main_Page"><p class="siteNavigate">Naviage to website</p></a>
+     <br>
   </div>
-  <br>
-  <div class="pixabay" aria-live="assertive">
-    <button id="previousPixabay">&#8249;</button>
-    <ul id="pixabayResults">
-    </ul>
-    <button id="nextPixabay">&#8250;</button> 
+  <h1 class="flickrTitle">-- Flickr --</h1>
+  <p class="saveImage">Click image and "Save image as..."</p>
+   <div class="mainContent">
+    <div class="flickr" aria-live="assertive">
+      <button id="previousFlickr">&#8249;</button>
+      <ul id="flickrResults">
+      </ul>
+      <button id="nextFlickr">&#8250;</button> 
+    </div>
+    <a href="https://www.flickr.com/"><p class="siteNavigate">Naviage to website</p></a>
+    
   </div>
-  <br>
 </div>
+<br>
 <button class="toTop">Back to top  <i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
 </main>
+
 </body>
 
 </html>

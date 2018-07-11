@@ -1,7 +1,14 @@
 //things that need to be done
 //build logic to make wikipedia reset value if new value is applied
-//build logic to make it so that pixabay doesn't automatically send default if submit is hit
-//build lightbox
+//make images larger from flickr
+    //seems like it requires me to make a photoid call and return the photo
+//build lightbox - doesnt work necessarily, maybe needs a function call?
+
+//logic to create a clickable box to open each photo via mobile - Next iteration. not going to happen
+//logic to reduce the number of photos shown based on size. built this but it worked weird. 
+//responsivenes is good except for ^
+//aXe wants lis to have individual class tags
+//labels as well
 
 const flickrLicense = [
 {uiDesc: "Attribution-NonCommercial-ShareAlike License", apiVal: 1}, 
@@ -22,6 +29,7 @@ var apiPixabayPage = 0;
 var wikiPageNumber = 1;
 var searchTerm = ''
 var licenseType = ''
+var imageReturn = 4
 
 function mapLicenseType(uiLicenseType, apiName) {
     let mapToUse = (apiName === 'flickr') ? flickrLicense: (apiName === 'google') ? googleLicense:null;
@@ -44,14 +52,41 @@ function submitAction() {
         searchTerm = queryTarget.val();
         var licenseQuery = $(event.currentTarget).find('.license');
         licenseType = licenseQuery.val();
-        flickrGetRequest(searchTerm, licenseType, 1);
         wikiGetRequest(searchTerm);
-        pixabayGetRequest(searchTerm, 1);
+        console.log($(window).width())
+        if ($(window).width() < 460) { //&& $(window).width() > 460
+          flickrGetRequest(searchTerm, licenseType, 1, 2);
+          }
+        else if  ($(window).width() < 1073 && $(window).width() > 460) { 
+          flickrGetRequest(searchTerm, licenseType, 1, 3);
+          }
+        else {
+          flickrGetRequest(searchTerm, licenseType, 1)
+        };
+        if ($(window).width() < 460) { //&& $(window).width() > 460
+          imageReturn = 2
+          }
+        else if  ($(window).width() < 1073 && $(window).width() > 460) { 
+          imageReturn = 3
+          }
+        else {
+          imageReturn = 4
+        };                
         $(event.currentTarget).val('');
+        if (searchTerm == '') {
+            return null
+          }
+        else if ($(window).width() < 460) { //&& $(window).width() > 460
+          pixabayGetRequest(searchTerm, 1, 2)
+          }
+        else if  ($(window).width() < 1073 && $(window).width() > 460) { 
+          pixabayGetRequest(searchTerm, 1, 3)
+          }
+        else {
+          pixabayGetRequest(searchTerm, 1, 4)
         //googleGetRequest(searchTerm, licenseType)
         //console.log(searchTerm)
-        //if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
- // some code..
+        }
       });
       $(".submit").click(function() {
         $('html, body').animate({
@@ -69,7 +104,7 @@ function submitAction() {
 function flickrNext() {
   document.getElementById('nextFlickr').addEventListener("click", function(e) {
   apiFlickrPage ++;
-  flickrGetRequest(searchTerm, licenseType, apiFlickrPage);
+  flickrGetRequest(searchTerm, licenseType, apiFlickrPage, imageReturn);
 });
 }
 
@@ -78,14 +113,14 @@ function flickrPrevious() {
   document.getElementById('previousFlickr').addEventListener("click", function(e) {
   //needs if statement
   apiFlickrPage --;
-  flickrGetRequest(searchTerm, licenseType, apiFlickrPage);
+  flickrGetRequest(searchTerm, licenseType, apiFlickrPage, imageReturn);
 });
 }
 
 function pixabayNext() {
   document.getElementById('nextPixabay').addEventListener("click", function(e) {
   apiPixabayPage ++;
-  pixabayGetRequest(searchTerm, apiPixabayPage);
+  pixabayGetRequest(searchTerm, apiPixabayPage, imageReturn);
 });
 }
 
@@ -94,12 +129,12 @@ function pixabayPrevious() {
   document.getElementById('previousPixabay').addEventListener("click", function(e) {
   //needs if statement
   apiPixabayPage -- ;
-  pixabayGetRequest(searchTerm, apiPixabayPage);
+  pixabayGetRequest(searchTerm, apiPixabayPage, imageReturn);
 });
 }
 
 //Flickr API Call 
-function flickrGetRequest(searchTerm, licenseType, apiFlickrPage) { 
+function flickrGetRequest(searchTerm, licenseType, apiFlickrPage, imageReturn) { 
     url = 'https://api.flickr.com/services/rest/';
     const params = {
         method: 'flickr.photos.search',
@@ -108,8 +143,9 @@ function flickrGetRequest(searchTerm, licenseType, apiFlickrPage) {
         tagmode: 'all',
         format: 'json',
         nojsoncallback: 1,
-        per_page: 4,
+        per_page: imageReturn?imageReturn:4,
         page: apiFlickrPage,
+        sort: 'relevance',
         //Work through owner name
         license: mapLicenseType(licenseType, 'flickr'),
     };
@@ -127,18 +163,21 @@ function buildThumbnailUrl(photo) {
       const thumbnail = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server +
       '/' + photo.id + '_' + photo.secret + '_q.jpg';
       console.log(thumbnail);
-      return `<li id="flickrImages">
-     <a href="${thumbnail}" id= "open-lightbox" tabindex><img src ="${thumbnail}" alt = "${photo.title}"></a>
-    </li>
+      const altText = photo.title.replace(/\"/g, "");
+      console.log(altText)
+      //hover isn't working why?
+      return `<li class="flickrImages">
+     <a href="${thumbnail}" class="lightbox_trigger" target="_blank"><img src ="${thumbnail}" alt = '${altText}' class="imageSource" id="imageSource" title="Click to open new tab"></a>
+      </li>
     `;
 }
 //Pixabay API CAll
-function pixabayGetRequest(searchTerm, apiPixabayPage) {
+function pixabayGetRequest(searchTerm, apiPixabayPage, imageReturn) {
     url = 'https://pixabay.com/api/';
     const params = {
         key: '9415919-232c4dd0b6ca28882e4ff7fba',
         q: searchTerm,
-        per_page: 4,
+        per_page: imageReturn?imageReturn:4,
         page: apiPixabayPage,
         //Work through owner name
         //license: mapLicenseType(licenseType, 'flickr'),
@@ -156,15 +195,15 @@ function pixabayGetRequest(searchTerm, apiPixabayPage) {
 function buildPixabayThumbnailUrl(photo) {
       const thumbnail = photo.largeImageURL;
       console.log(thumbnail);
-      return `<div class="pixabayImages">
-     <a href="${thumbnail}" tabindex><img src ="${thumbnail}" alt = "${photo.tags}" class="imagesP"></a>
-    <div>    
+      return `<li class="pixabayImages">
+     <a href="${thumbnail}" tabindex target="_blank"><img src ="${thumbnail}" alt = "${photo.tags}" class="imagesP" title="Click to open new tab"></a>
+    </li>    
     `;
 }
 
 function wikiPageMaker () {
     var results = '';
-    for(var i = (wikiPageNumber * 4 - 4) ; i < (wikiPageNumber * 4); i++) {
+    for(var i = (wikiPageNumber * imageReturn - imageReturn) ; i < (wikiPageNumber * imageReturn); i++) {
     //{show wikiImages[i]
     results += buildWikiThumbnailUrl (wikiImages[i]);
   }
@@ -188,6 +227,7 @@ function wikiPreviousButton (){
 }
 
 function wikiGetRequest(searchTerm) {
+  console.log(searchTerm);
     url = 'https://commons.wikimedia.org/w/api.php?';
     const params = {
         //method: 'flickr.photos.search',
@@ -213,8 +253,12 @@ function wikiGetRequest(searchTerm) {
         console.log(response);
          //const results = response.query.pages[Object.keys(response.query.pages)[0]].images.map((item, response) => buildWikiThumbnailUrl(item));
          wikiImages = response.query.pages[Object.keys(response.query.pages)[0]].images;
-         const results = wikiPageMaker();
+         if(!wikiImages) {
+              $('#wikiResults').html('No results');
+              }
+         else {const results = wikiPageMaker();
          $('#wikiResults').html(results)
+       }
 });
 }
 
@@ -222,29 +266,42 @@ function buildWikiThumbnailUrl(photo) {
       const urlWiki = photo.title.replace('File:', '').replace(/\s/g, '_');
       const thumbnail = 'https://commons.wikimedia.org/wiki/Special:FilePath/' + urlWiki; 
       console.log(thumbnail);
-      return `<div class="wikiImages">
-     <a href="${thumbnail}" tabindex><img src ="${thumbnail}" alt = "${photo.title}" class="imagesP"></a>
-    <div>    
+      return `<li class="wikiImages">
+     <a href="${thumbnail}" tabindex target="_blank"><img src ="${thumbnail}" alt = "${photo.title}" class="imagesP" title="Click to open new tab"></a>
+    </li>    
     `;
 }
 
-/*(function($) {
-  
-  // Open Lightbox
-  $('.open-lightbox').on('click', function(e) {
-    e.preventDefault();
-    var image = $(this).attr('href');
-    $('html').addClass('no-scroll');
-    $('#pixabayResults').append('<div class="lightbox-opened"><img src="' + image + '"></div>');
+/*function writeLightbox () {
+
+  $('.lightbox_trigger').click(function(e) {
+      e.preventDefault();
+      var image_href = $(this).attr("href");
+      if ($('#lightbox').length > 0) {
+        ('#content').html('<img src="' + image_href + '" />');
+        $('#lightbox').show();
+        }
+      else { 
+        var lightbox = 
+        '<div id="lightbox">' +
+          '<p>Click to close</p>' +
+          '<div id="content">' + //insert clicked link's href into img src
+            '<img src="' + image_href +'" />' +
+            //'<a href"' image_href + '" download>Click here to download</a>' + //will this work without html code from above?
+          '</div>' +  
+        '</div>';
+  $('body').append(lightbox);
+}
+});
+  function doThis () {
+  $('body').on('click', '#lightbox', function() {
+    $('#lightbox').hide();
+
   });
-  
-  // Close Lightbox
-    $('#pixabayResults').on('click', '.lightbox-opened', function() {
-    $('html').removeClass('no-scroll');
-    $('.lightbox-opened').remove();
-  });
-  
-})(jQuery);*/
+}
+doThis ();
+}*/
+
 
 $(document).ready(function () {
         submitAction();
@@ -254,5 +311,5 @@ $(document).ready(function () {
         pixabayPrevious ();
         wikiNextButton ();
         wikiPreviousButton ();
-        
+        //writeLightbox ();
 });

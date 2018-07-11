@@ -7,22 +7,10 @@ header {
 	background-size: cover;
 	background-position: 15% 0%;
 	background-attachment: scroll;
-	height: 100vh; /*will have to be changed for responsive*/
+	
 	padding: 20px 0px;
 }
-.imageLogo {
-	width: 15%;
-	height: auto;
-	margin-top: 80px;
-}
-.Logo h1{
-	display: inline-block;
-	vertical-align: top;
-	color: white;
-	margin-top: 130px;
-	font-weight: bold;
-	font-size: 35px;
-}
+
 main {
 	margin-top: 25px;
 }
@@ -31,6 +19,13 @@ input {
 	margin-top: 50px;
 	}
 
+.Logo h1{
+	display: inline-block;
+	vertical-align: top;
+	color: white;
+	font-weight: bold;
+	font-size: 35px;
+	}
 .searchLocation {
 	border: none;
 	background: rgba(255, 255, 255, 0.50);
@@ -52,7 +47,7 @@ input {
 .license {
 	display: inline-block;
 	padding: 5px 10px;
-	width: 20%;
+	
 	
 }
 
@@ -80,6 +75,9 @@ input {
 	text-align: center;
 	
 }
+.LicenseAttribution li {
+	list-style-type: none;
+}
 
 
 .PublicDomain {
@@ -104,12 +102,37 @@ input {
 	border-right: 2px black;
 	border-left: 2px black;
 }
+.results .logoDesign {
+	text-align: left;
+	margin-left: 150px;
+	display: inline-block;
+	float: left; /*for some reason this causes only flickr to move slightly */
+	width: 20%;
+	height: auto;
+	margin: 0;
+}
+
+.results h1 {
+	text-align: center;
+	margin-bottom: 
+}
+.saveImage {
+	text-align: center;
+}
+.siteNavigate{
+	text-align: center;
+	color: black;
+	text-decoration: underline;
+}
+/*.flickrTitle {
+	padding-top: 150px
+}*/
 .flickr {
 	width: 80%;
 	display: flex;
 	background:#fff; 
 	margin: auto;
-	margin-top: 100px
+	
 }
 
 .wiki {
@@ -135,15 +158,13 @@ input {
 }
 
 #flickrResults {
-	width: 95%;
+	width: 100%;
 	text-align: center;
 }
 #flickrResults li {
 	display: inline-block;
 }
-#flickrResults img{
 
-}
 #nextFlickr {
 	float: right;
 	border: none;
@@ -159,10 +180,12 @@ input {
 }
 
 #wikiResults {
-	width: 95%;
+	width: 100%;
 	text-align: center;
 }
-
+#wikiResults {
+	padding-left: 0;
+}
 #wikiResults li {
 	display: inline-block;
 	
@@ -193,16 +216,14 @@ input {
 }
 
 #pixabayResults {
-	width: 95%;
+	width: 100%;
 	text-align: center;
 }
-
+#pixabayResults {
+	padding-left: 0;
+}
 #pixabayResults li {
 	display: inline-block;
-
-}
-#pixabayResults img{
-
 }
 #nextPixabay {
 	float: right;
@@ -214,6 +235,11 @@ input {
 	width: 200px;
 	height: auto;
 	float: left;
+}
+
+.results h1 {
+	background-color: none;
+	
 }
 ul {
 	list-style-type: none;
@@ -234,29 +260,23 @@ body {
 
 .flickr li {
 	border: 1px black;
-	
 	width: auto;
-	
 	}
-.flickr ul {
-	  
-}
 
 .wiki li {
 	border: 1px black;
 	background:#fff; 
-	padding:25px;
 	width: auto;
-	 
 	}
+
 .flickr ul {
-	background:#fff; 
-	
+	background:#fff;
+	margin-left: 0;
+	padding-left: 0;
 }
 
-#flickrImages img {
+.flickrImages img {
 	padding: 7px;
-
 }
 
 .pixabayImages img {
@@ -269,46 +289,48 @@ body {
 
 .toTop {
 	border: none;
-	text-align: center;
+	
 	padding: 20px;
 }
-/*Testing */
-#lightbox {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  background: rgba(0, 0, 0, 0.3);
-  display: none;
+@media only screen and (max-width: 600px) {
+	.siteNavigation{
+		margin-left: 50px;
+	}
+	.logo h1 {
+		margin-top: 100px;
+		
+	}
+	.imagelogo {
+		width: 25%;
+		height: auto;
+	}
+	header {
+	background: linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) ), url(https://i.imgur.com/at2livj.jpg);
+	background-size: cover;
+	background-position: 15% 0%;
+	background-attachment: scroll;
+	padding: 20px 0px;
+	}
+	.LicenseAttribution {
+		padding-left: 0;
+	}
+	.results h1 {
+		font-size: 25px;
+	}
 }
 
-#lightbox.open {
-  display: block;
-}
+@media screen and (min-width: 600px) {
+	header {
+		height: 100vh;
+	}
 
-#lightbox_content {
-  position: absolute;
-  width: 500px;
-  height: 400px;
-  background: #ffffff;
-  border-radius: 3px;
-  left: 50%;
-  top: 50%;
-  margin-left: -250px;
-  margin-top: -200px;
-  text-align: center;
-}
-
-#close {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  background: rgba(0, 0, 0, 0.2);
-  height: 20px;
-  width: 20px;
-  border-radius: 15px;
-  text-align: center;
-  color: #ffffff;
-  cursor: pointer;
+	.imageLogo {
+	width: 15%;
+	height: auto;
+	margin-top: 80px;
+	}
+	.Logo h1{
+	margin-top: 130px;
+	
+	}
 }
