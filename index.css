@@ -38,7 +38,7 @@ input {
 	background: rgba(255, 255, 255);
 	transition: color 0.25s linear;
 	border: none;
-	padding: 5px 10px;
+	padding: 17px 10px;
 	border-radius: 5px
 }
 .submit:hover {
@@ -54,7 +54,7 @@ input {
 .LicenseAttribution {
 	display: flex;
 	padding-top: 20px;
-	margin-top: 20px;
+	
 	text-align: center;
 	background-color: rgba(220,220,220, .4)
 	}
@@ -301,7 +301,7 @@ body {
 		
 	}
 	.imagelogo {
-		width: 25%;
+		width: 10%;
 		height: auto;
 	}
 	header {
@@ -313,6 +313,7 @@ body {
 	}
 	.LicenseAttribution {
 		padding-left: 0;
+		margin-top: 40px
 	}
 	.results h1 {
 		font-size: 25px;
@@ -331,6 +332,8 @@ body {
 	}
 	.Logo h1{
 	margin-top: 130px;
-	
+	}
+	.LicenseAttribution {
+		margin-top: 130px;
 	}
 }
