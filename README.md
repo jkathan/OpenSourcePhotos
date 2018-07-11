@@ -13,4 +13,5 @@ Technology used: HTML/CSS/JavaScript/jQuery
 
 Future updates: 
 - make images larger from flickr
+- make flickr search more specific
 - build lightbox that provides information about image
