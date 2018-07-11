@@ -254,7 +254,7 @@ function wikiGetRequest(searchTerm) {
          //const results = response.query.pages[Object.keys(response.query.pages)[0]].images.map((item, response) => buildWikiThumbnailUrl(item));
          wikiImages = response.query.pages[Object.keys(response.query.pages)[0]].images;
          if(!wikiImages) {
-              $('#wikiResults').html('No results');
+              $('#wikiResults').html('<h1 class="noResults">No results</h1>');
               }
          else {const results = wikiPageMaker();
          $('#wikiResults').html(results)
