@@ -321,9 +321,7 @@ body {
 }
 
 @media screen and (min-width: 600px) {
-	header {
-		height: 100vh;
-	}
+	
 
 	.imageLogo {
 	width: 15%;
